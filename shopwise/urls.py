@@ -19,7 +19,8 @@ from rest_framework.authtoken import views
 
 urlpatterns = [ 
     path("admin/", admin.site.urls),
-    path("", include("accounts.urls")),
+    path('api/', include('shop.urls')),
     path("api-token-auth", views.obtain_auth_token),
-    path('api/', include('shop.urls'))
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
 ]
