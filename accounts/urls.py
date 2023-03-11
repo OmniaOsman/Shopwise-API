@@ -1,7 +1,6 @@
-from django.urls import path
-from accounts.views import RegisterUserAPIView
+from django.urls import path, include
+from rest_framework.authtoken import views
+
 
 urlpatterns = [
-    # path("get-details", UserDetailAPI.as_view()),
-    path("register", RegisterUserAPIView.as_view()),
-]
+] 
