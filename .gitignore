@@ -2,3 +2,4 @@ media/
 Pipfile
 Pipfile.lock
 .vscode
+.env
