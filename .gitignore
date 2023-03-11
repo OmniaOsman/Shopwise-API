@@ -1,2 +1,4 @@
+media/
 Pipfile
 Pipfile.lock
+.vscode

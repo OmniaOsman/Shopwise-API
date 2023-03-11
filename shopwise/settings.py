@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#9_7q+s0h(i)@&o#h5(efcj!@p!2(6kp-bc7mds*!y+%3sx&#o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.railway.app']
+ALLOWED_HOSTS = ['.railway.app', '127.0.0.1']
 
 
 # Application definition
@@ -38,8 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # third-party 
     'rest_framework',
     'rest_framework.authtoken',
+    'djoser',
+    
+    # apps
     'accounts',
     'shop',
 ]
@@ -120,20 +125,61 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
-# STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_URL = "static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'omniaosman4@gmail.com'
+EMAIL_HOST_PASSWORD = 'wzustxcsuivxvafi'
+EMAIL_USE_TLS = True
+
+
 REST_FRAMEWORK = {
         'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication', 
     ],
+}
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# Media
+MEDIA = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
+
+
+# Authentication
+AUTH_USER_MODEL = 'accounts.User'
+
+DJOSER = {
+    'USER_ID_FIELD': 'username',
+    'LOGIN_FIELD': 'email',
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'activate/{uid}/{token}/',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SEND_CONFIRMATION_EMAIL': True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
+    'SERIALIZERS':
+        {
+            'user_create': 'accounts.serializers.UserCreateSerializer',
+            'user': 'accounts.serializers.UserCreateSerializer'
+        }
 }
