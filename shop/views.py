@@ -1,13 +1,9 @@
-from django.shortcuts import get_object_or_404
 from shop.serializers import *
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.views import APIView
 from shop.models import *
-from django.urls import reverse_lazy
-from rest_framework.response import Response
+from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
-from .models import Product, Category
 
 
 class ListProductAPIView(ListAPIView):
@@ -17,6 +13,10 @@ class ListProductAPIView(ListAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    
+    # search
+    filter_backends = (SearchFilter, )
+    search_fields = ('product_title', 'product_brand')
     
     
 class CreateProductAPIView(CreateAPIView):
@@ -52,7 +52,7 @@ class CreateCategoryAPIView(CreateAPIView):
 
 class ProductDetailAPIView(RetrieveUpdateDestroyAPIView):
     """
-    Method: GET, PUT, DELETE
+    Method: GET, PATCH, POST, PUT, DELETE
     URL: products/<product_slug>/
     """
     queryset = Product.objects.all()
@@ -62,9 +62,20 @@ class ProductDetailAPIView(RetrieveUpdateDestroyAPIView):
 
 class CategoryDetailAPIView(RetrieveUpdateDestroyAPIView):
     """
-    Method: GET
+    Method: GET, PATCH, POST, PUT, DELETE
     URL: category/<slug>/
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field = 'slug'
+    
+    
+# class ProductSearchView(ListAPIView):
+#     """
+#     Method: GET
+#     URL: search/
+#     """
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+#     filter_backends = [SearchFilter]
+#     search_fields = ['name', 'description']
