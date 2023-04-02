@@ -14,6 +14,9 @@ from pathlib import Path
 import os
 from environs import Env
 
+env = Env() 
+env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#9_7q+s0h(i)@&o#h5(efcj!@p!2(6kp-bc7mds*!y+%3sx&#o'
+SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     # apps
     'accounts',
     'shop',
+    'order',
 ]
 
 MIDDLEWARE = [
@@ -85,9 +89,17 @@ WSGI_APPLICATION = 'shopwise.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'shopwise',
+        'USER': env.str('USER'),
+        'PASSWORD': env.str('PASSWORD'),
+        'HOST': env.str('HOST'),
+        'PORT': '3306',
     }
 }
 
@@ -139,9 +151,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-env = Env() 
-env.read_env()
 
 # Email settings
 EMAIL_HOST = 'smtp.gmail.com'
