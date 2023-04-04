@@ -1,11 +1,6 @@
-from shop.serializers import *
-from order.models import CartItem
-from rest_framework import generics
-from rest_framework.views import APIView
-from rest_framework import viewsets
 from shop.models import *
-from rest_framework.filters import SearchFilter
-from rest_framework import permissions
+from shop.serializers import *
+from rest_framework import generics, filters
 
 
 class ListCreateProductAPIView(generics.ListCreateAPIView):
@@ -14,11 +9,10 @@ class ListCreateProductAPIView(generics.ListCreateAPIView):
     URL: /api/products/
     """
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )   
+    serializer_class = ProductSerializer  
     
     # search
-    filter_backends = (SearchFilter, )
+    filter_backends = (filters.SearchFilter, )
     search_fields = ('product_title', 'product_brand')
     
     
@@ -29,10 +23,9 @@ class ListCreateCategoryAPIView(generics.ListCreateAPIView):
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer  
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
     
     # search
-    filter_backends = (SearchFilter, )
+    filter_backends = (filters.SearchFilter, )
     search_fields = ('title', )
     
 
