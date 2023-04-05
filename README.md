@@ -76,3 +76,12 @@ such as registration, login, logout, password reset and account activation
 | `Authorization Token` | Body --> data want to update |
 
 
+#### Activate account
+
+```
+  POST /auth/users/activation/
+```
+
+| Body       | Description                |
+| :--------  | :------------------------- |
+| `Token`, `uid` | nothing |
