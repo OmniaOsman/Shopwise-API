@@ -107,7 +107,7 @@ This app contains the CRUD operations for products and categories. We can filter
 ```
 
 
-#### add new product
+#### Add new product
 
 ```
   POST /api/product/
@@ -115,15 +115,67 @@ This app contains the CRUD operations for products and categories. We can filter
 
 | Headers    | Body                       |   
 | :--------  | :------------------------- |
-| `Token`    | **required** `product_title`, `product_price`, `product_desc`, `product_img`, `inventory`, `category`, `best_seller`, `discount`, `product_brand` |
+| `Authorization Token`    | **required** `product_title`, `product_price`, `product_desc`, `product_img`, `inventory`, `category`, `best_seller`, `discount`, `product_brand` |
 
 
-#### add new category
+#### Add new category
 
 ```
   POST /api/category/
 ```
 
-| Headers    | Body                       | Description                |
-| :--------  | :------------------------- | :------------------------- |
-| `Token`    | **required** `product_title`, `product_price`, `product_desc`, `product_img`, `inventory`, `category`, `best_seller`, `discount`, `product_brand` | `product_slug` is created automatically from `product_title` field |
+| Headers    | Body                             | Description                |
+| :--------  | :------------------------------- | :------------------------- |
+| `Authorization Token` | **required** `title`  | `slug` is created automatically from `title` field |
+
+
+
+#### Update Product
+
+```
+  PATCH /api/products/{product_slug}/
+```
+
+| Headers               |  Body                        |
+| :-------------------  | :--------------------------- |
+| `Authorization Token` | Body --> data want to update |
+
+
+#### Update category
+
+```
+  PUT /api/category/{title}/
+```
+
+| Headers               | Body  |
+| :-------------------  | :---- |
+| `Authorization Token` | title |
+
+
+
+#### Delete Product, Delete category
+
+```
+  DELETE /api/products/{product_slug}/
+```
+```
+  DELETE /api/category/{slug}/
+```
+
+| Headers               |                    
+| :-------------------  |
+| `Authorization Token` |
+
+
+#### Search product, search category
+
+```
+  GET /api/products/
+```
+
+```
+  GET /api/category/
+```
+| params   | Type  | Description                |                
+| :------- | :---- | :------------------------- |
+| `search` | `str` | use `product_title` or `product_brand` for search products, `title` for category |
