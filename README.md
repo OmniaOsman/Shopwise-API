@@ -3,8 +3,7 @@
 
 ## accounts app
 
-The authentication in project used Djoser third party package. Djoser is a library that provides a set of Django Rest Framework views to handle basic actions
-such as registration, login, logout, password reset and account activation
+The authentication in project used Djoser third party package. Djoser is a library that provides a set of Django Rest Framework views to handle basic actions such as registration, login, logout, password reset and account activation. Gmail is used for email settings
 
 
 
@@ -18,7 +17,7 @@ such as registration, login, logout, password reset and account activation
 
 | Body      | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. username, email, password, re_password **optional**, first_name, last_name  |
+| `api_key` | `string` | **Required**. `username`, `email`, `password`, `re_password` **optional**, `first_name`, `last_name`  |
 
 
 #### Create token
@@ -29,7 +28,7 @@ such as registration, login, logout, password reset and account activation
 
 | Body      | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. email, password |
+| `api_key` | `string` | **Required**. `email`, `password` |
 
 
 #### Reset password
@@ -40,7 +39,7 @@ such as registration, login, logout, password reset and account activation
 
 | Headers    | Description                |
 | :--------  | :------------------------- |
-| `Authorization Token` | **Required**. email, it will used the email to reset the password  |
+| `Authorization Token` | **Required**. `email`, it will used the email to reset the password  |
 
 
 #### Reset password confirmation
@@ -51,7 +50,7 @@ such as registration, login, logout, password reset and account activation
 
 | Headers    | Description                |
 | :--------  | :------------------------- |
-| `Authorization Token` | **Required**. uid, token, new_password, re_new_password  |
+| `Authorization Token` | **Required**. `uid`, `token`, `new_password`, `re_new_password`  |
 
 
 #### List all users
@@ -85,3 +84,46 @@ such as registration, login, logout, password reset and account activation
 | Body       | Description                |
 | :--------  | :------------------------- |
 | `Token`, `uid` | nothing |
+
+
+
+
+## shop app
+
+This app contains the CRUD operations for products and categories. We can filter the product with `product_title` or `product_brand`, and categories with `title`
+
+
+#### Display all products
+
+```
+  GET /api/products/
+```
+
+
+#### Display all categories
+
+```
+  GET /api/category/
+```
+
+
+#### add new product
+
+```
+  POST /api/product/
+```
+
+| Headers    | Body                       |   
+| :--------  | :------------------------- |
+| `Token`    | **required** `product_title`, `product_price`, `product_desc`, `product_img`, `inventory`, `category`, `best_seller`, `discount`, `product_brand` |
+
+
+#### add new category
+
+```
+  POST /api/category/
+```
+
+| Headers    | Body                       | Description                |
+| :--------  | :------------------------- | :------------------------- |
+| `Token`    | **required** `product_title`, `product_price`, `product_desc`, `product_img`, `inventory`, `category`, `best_seller`, `discount`, `product_brand` | `product_slug` is created automatically from `product_title` field |
