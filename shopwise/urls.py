@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken import views
+from rest_framework.routers import DefaultRouter
+from order.views import CartView, CartItemView
+
+router = DefaultRouter()
+router.register('carts', CartView)
+router.register('cartitems', CartItemView)
 
 urlpatterns = [ 
     path("admin/", admin.site.urls),
@@ -23,5 +29,6 @@ urlpatterns = [
     path("api-token-auth", views.obtain_auth_token),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path("api/cart/", include('order.urls'))
+    # path("api/carts/", include('order.urls')),
+    path('api/', include(router.urls)),
 ]
