@@ -179,3 +179,48 @@ This app contains the CRUD operations for products and categories. We can filter
 | params   | Type  | Description                |                
 | :------- | :---- | :------------------------- |
 | `search` | `str` | use `product_title` or `product_brand` for search products, `title` for category |
+
+
+### order app
+This app for adding products to cart. every user can create only cart and add products into it. in the cart the total and the number of items are calculated.
+
+
+#### Display all carts and cartitems
+
+```
+  GET /api/carts/
+```
+```
+  GET /api/cartitems/
+```
+
+
+#### Delete cart
+
+```
+  DELETE /api/carts/{user-id}/
+```
+
+| Headers               |                    
+| :-------------------  |
+| `Authorization Token` |
+
+
+#### Create cart
+
+```
+  POST /api/carts/
+```
+| Body      | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `id`     | **Required**. `userID`     |
+
+
+#### Add item to cart
+
+```
+  POST /api/cartitems/
+```
+| Body      | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `id`     | **Required**. `cartID`, `product-ID`  |
