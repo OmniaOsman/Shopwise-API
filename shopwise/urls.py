@@ -29,6 +29,5 @@ urlpatterns = [
     path("api-token-auth", views.obtain_auth_token),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    # path("api/carts/", include('order.urls')),
     path('api/', include(router.urls)),
 ]
