@@ -23,5 +23,6 @@
         "src": "/(.*)",
         "dest": "shopwise/wsgi.py"
       }
-    ]
+    ],
+    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
   }
