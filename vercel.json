@@ -11,7 +11,7 @@
   ],
   "routes": [
       {
-          "src": "shopwise/(.*)",
+          "src": "/(.*)",
           "dest": "shopwise/wsgi.py"
       }
   ]
