@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1']
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    'algoliasearch_django',
     
     # apps
     'accounts',
@@ -199,10 +200,18 @@ DJOSER = {
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-    ],
+    ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 2,
+
+}
+
+ALGOLIA = {
+    'APPLICATION_ID': 'Z07CRBMZA9',
+    'API_KEY': env.str('API_KEY'),
 }
