@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
-    'algoliasearch_django',
     
     # apps
     'accounts',
@@ -209,9 +208,4 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 2,
 
-}
-
-ALGOLIA = {
-    'APPLICATION_ID': 'Z07CRBMZA9',
-    'API_KEY': env.str('API_KEY'),
 }
