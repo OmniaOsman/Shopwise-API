@@ -4,13 +4,13 @@
     {
       "src": "shopwise/wsgi.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.10.7" }
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.10" }
     },
     {
       "src": "build_files.sh",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "staticfiles"
+        "distDir": "staticfiles_build"
       }
     }
   ],
