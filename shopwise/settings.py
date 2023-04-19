@@ -94,12 +94,13 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'shopwise',
-        'USER': env.str('USER'),
+        'USER': 'postgres',
         'PASSWORD': env.str('PASSWORD'),
         'HOST': env.str('HOST'),
-        'PORT': '3306',
+        'PORT': '5432',
+        'API_KEY': env.str('API_KEY'),
     }
 }
 
