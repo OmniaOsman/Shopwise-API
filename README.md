@@ -1,5 +1,5 @@
 # Shopwise-API
- API for E-commerce website using Django Rest Framework
+ API for E-commerce website using Django Rest Framework, hosting postgres database on supabase.
 
 ## accounts app
 
