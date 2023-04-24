@@ -95,7 +95,7 @@ DATABASES = {
     # },
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shopwise',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': env.str('PASSWORD'),
         'HOST': env.str('HOST'),
