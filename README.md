@@ -182,7 +182,7 @@ This app contains the CRUD operations for products and categories. We can filter
 
 
 ### order app
-This app for adding products to cart. every user can create only cart and add products into it. in the cart the total and the number of items are calculated.
+This app for adding products to cart. In the cart the total and the number of items are calculated.
 
 
 #### Display all carts and cartitems
@@ -205,15 +205,6 @@ This app for adding products to cart. every user can create only cart and add pr
 | :-------------------  |
 | `Authorization Token` |
 
-
-#### Create cart
-
-```
-  POST /api/carts/
-```
-| Body      | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `id`     | **Required**. `userID`     |
 
 
 #### Add item to cart
