@@ -189,11 +189,13 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': True,
     'SEND_CONFIRMATION_EMAIL': True,
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
-    'SERIALIZERS':
-        {
-            'user_create': 'accounts.serializers.UserCreateSerializer',
-            'user': 'accounts.serializers.UserCreateSerializer'
-        }
+    'PERMISSIONS': {
+        'user_list': ['rest_framework.permissions.IsAdminUser'],
+    },
+    'SERIALIZERS': {
+        'user_create': 'accounts.serializers.UserCreateSerializer',
+        'user': 'accounts.serializers.UserCreateSerializer'
+    }
 }
 
 
